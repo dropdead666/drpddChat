@@ -5,7 +5,14 @@
         <div class="panel panel-default">
             <div class="panel-heading">Окно чата</div>
             <div class="panel-body">
-
+                {% for message in messages %}
+                    <div id="talk" class="message">
+                        <div class="date">
+                            {{ message.published_date.day }}.{{ message.published_date.month }}.{{ message.published_date.year }} {{ message.published_date.time }}
+                        </div>
+                        <p><a href="">{{ message.author }}</a>: {{ message.text|linebreaksbr }}</p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -17,17 +24,18 @@
             </div>
     </div>
 </div>
-</div>
-<div class="row">
-  <div class="col-lg-9">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Напишите сообщение...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon glyphicon-envelope" aria-hidden="true"></span>
-        </button>
-      </span>
+    <div class="col-lg-9">
+        <form action="create_message/" method="POST" id="message-form">
+        {% csrf_token %}
+        <div class="input-group">
+          <input id ="message-text" type="text" class="form-control" value="{{ form.text }}">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon glyphicon-envelope" aria-hidden="true"></span></button>
+          </span>
+        </div>
+        </form>
+      </div>
     </div>
-  </div>
 </div>
+
 {% endblock %}
