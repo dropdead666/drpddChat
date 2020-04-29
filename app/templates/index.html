@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>drpddChat</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-xs-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">Окно чата</div>
+            <div class="panel-body">
 
-</body>
-</html>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Пользователи</div>
+            <div class="panel-body">
+
+            </div>
+    </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-lg-9">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Напишите сообщение...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon glyphicon-envelope" aria-hidden="true"></span>
+        </button>
+      </span>
+    </div>
+  </div>
+</div>
+{% endblock %}

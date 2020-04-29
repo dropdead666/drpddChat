@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>drpddChat</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body>
+<div class="page-header">
+    <div class="row">
+        <div class="col-xs-2">
+            <h1>drpddChat</h1>
+        </div>
+        <div class="col-xs-6">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Войти</a></li>
+                <li role="presentation"><a href="#">Профиль</a></li>
+                <li role="presentation"><a href="#">Выйти</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="content container">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
