@@ -31,8 +31,9 @@ function create_message() {
         success : function(json) {
             $('#message-text').val('');
             console.log(json);
-            $("#talk").prepend("<li><strong>"+json.text+"</strong> - <em> "+json.author+"</em> - <span> "+json.created+"</span></li>");
+            $("#talk").prepend("<div class=\"date\"">+json.created+"</div> <p><a href=\"\">"+json.author+"</a>: "+json.created+"</p>");
             console.log("success");
+            setTimeout(function(){ location.reload(); }, 1 );
         },
         error : function(xhr,errmsg,err) {
             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! error: "+errmsg+" <a href='#' class='close'>&times;</a></div>");
