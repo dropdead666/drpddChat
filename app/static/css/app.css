@@ -31,11 +31,16 @@
     text-decoration: underline;
 }
 
-.btn-group-lg {
-    background-color: #A3D5E4;
-    padding: 25px 20px 15px 40px;
+.content .panel-default .panel-body {
+    height: 300px;
+    overflow-y: scroll;
 }
 
-.content {
-
+.btn-primary {
+    width: 360px;
 }
+
+.input-group-lg {
+    padding: 0px 0px 15px 0px;
+}
+

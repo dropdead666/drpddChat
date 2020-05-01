@@ -4,13 +4,17 @@
     <div class="col-xs-9">
         <div class="panel panel-default">
             <div class="panel-heading">Окно чата</div>
-            <div class="panel-body">
+            <div id="block" class="panel-body">
                 {% for message in messages %}
                     <div id="talk" class="message">
                         <div class="date">
                             {{ message.published_date.day }}.{{ message.published_date.month }}.{{ message.published_date.year }} {{ message.published_date.time }}
                         </div>
-                        <p><a href="">{{ message.author }}</a>: {{ message.text|linebreaksbr }}</p>
+                        {% if message.author == request.user %}
+                        <p><span style="color: green">{{ message.author }}(Вы)</span>: {{ message.text|linebreaksbr }}</p>
+                        {% else %}
+                        <p><a onClick="document.getElementById('message-text').value= '@{{ message.author }}'">{{ message.author }}</a>: {{ message.text|linebreaksbr }}</p>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
@@ -19,16 +23,27 @@
     <div class="col-xs-3">
         <div class="panel panel-default">
             <div class="panel-heading">Пользователи</div>
-            <div class="panel-body">
-
-            </div>
+                <div class="panel-body">
+                    <p>В сети:</p>
+                    {% for user in users_online %}
+                    {% if user == request.user %}
+                    <p>{{ user.username }}(Вы)</p>
+                    {% else %}
+                    <p><a href="">{{ user.username }}</a></p>
+                    {% endif %}
+                    {% endfor %}
+                    <p>Не в сети:</p>
+                    {% for user in users_offline %}
+                    <p><a href="">{{ user.username }}</a></p>
+                    {% endfor %}
+                </div>
+        </div>
     </div>
-</div>
     <div class="col-lg-9">
         <form action="create_message/" method="POST" id="message-form">
         {% csrf_token %}
         <div class="input-group">
-          <input id ="message-text" type="text" class="form-control" value="{{ form.text }}">
+          <input id ="message-text" type="text" class="form-control" placeholder="Напишите сообщение..." value="{{ form.text }}">
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon glyphicon-envelope" aria-hidden="true"></span></button>
           </span>
@@ -37,4 +52,8 @@
       </div>
     </div>
 </div>
+<script type="text/javascript">
+  var block = document.getElementById("block");
+  block.scrollTop = block.scrollHeight;
+</script>
 {% endblock %}
