@@ -9,7 +9,7 @@ import datetime
 
 class Message(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = models.TextField(blank=False, null=False)
     published_date = models.DateTimeField(blank=True, null=True)
 
     def publish(self):

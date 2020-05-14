@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if not request.user.is_authenticated %}
-<div class="row vertical-center-row align-items-center vertical-center">
+<div class="row vertical-center-row align-items-center">
     <div class="col-md-4 col-md-offset-4">
         <form action="{% url 'login' %}" id="login-form" method="post">
             {% csrf_token %}

@@ -68,23 +68,25 @@ def create_message(request):
         response_data = {}
 
         message = Message(text=message_text, author=request.user)
-        message.publish()
 
-        response_data['result'] = 'Create message successful!'
-        response_data['message_pk'] = message.pk
-        response_data['text'] = message.text
-        response_data['created'] = datetime.datetime.now()
-        response_data['author'] = message.author.username
+        if not message.text == '':
+            message.publish()
 
-        return HttpResponse(
-            json.dumps(
-                response_data,
-                sort_keys=True,
-                indent=1,
-                cls=DjangoJSONEncoder
-            ),
-            content_type="application/json"
-        )
+            response_data['result'] = 'Create message successful!'
+            response_data['message_pk'] = message.pk
+            response_data['text'] = message.text
+            response_data['created'] = datetime.datetime.now()
+            response_data['author'] = message.author.username
+
+            return HttpResponse(
+                json.dumps(
+                    response_data,
+                    sort_keys=True,
+                    indent=1,
+                    cls=DjangoJSONEncoder
+                ),
+                content_type="application/json"
+            )
     else:
         return HttpResponse(
             json.dumps({"nothing to see": "this isn't happening"}),
